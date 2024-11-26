@@ -121,6 +121,9 @@ pub struct Torrent {
     pub uploaded_session: Option<i64>,
     /// Torrent upload speed (bytes/:,)
     pub upspeed: Option<i64>,
+    /// Torrent privacy
+    #[serde(rename = "isPrivate")]
+    pub is_private: Option<bool>,
 }
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
