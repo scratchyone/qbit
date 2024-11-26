@@ -57,7 +57,7 @@ pub struct Tracker {
     /// Tracker priority tier. Lower tier trackers are tried before higher
     /// tiers. Tier numbers are valid when `>= 0`, `< 0` is used as placeholder
     /// when `tier` does not exist for special entries (such as DHT).
-    pub tier: i64,
+    pub tier: TrackerTier,
     /// Number of peers for current torrent, as reported by the tracker
     pub num_peers: i64,
     /// Number of seeds for current torrent, as reported by the tracker
@@ -70,6 +70,13 @@ pub struct Tracker {
     /// Tracker message (there is no way of knowing what this message is - it's
     /// up to tracker admins)
     pub msg: String,
+}
+
+#[derive(Debug, Deserialize, PartialEq, Eq, Clone)]
+#[serde(untagged)]
+pub enum TrackerTier {
+    Int(i64),
+    Str(String),
 }
 
 #[derive(
